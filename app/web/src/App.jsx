@@ -1,15 +1,9 @@
 import "./App.css";
-import { API_URL } from "shared/constants";
-import { SignInForm } from "./pages/SignInForm";
-// import Home from "./pages/Home";
+
+// import { Home } from "./pages/Home.jsx";
 
 function App() {
-  return (
-    <>
-      {/* <Home /> */}
-      <SignInForm />
-    </>
-  );
+  return <>{/* <Home /> */}</>;
 }
 
 export default App;
