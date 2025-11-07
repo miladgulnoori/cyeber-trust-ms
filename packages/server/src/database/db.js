@@ -1,27 +1,23 @@
-import mongoose from 'mongoose';
-import ENV from '../config/env.config';
+import mongoose from "mongoose";
+import ENV from "../config/env.config.js";
 
 if (!ENV.MONGODB_URI) {
-  throw new Error('DATABASE_URL is not defined in environment variables.');
+  throw new Error("DATABASE_URL is not defined in environment variables.");
 }
 
-async function connectDB() {
+export async function connectDB() {
   try {
     const mongooseInstance = await mongoose.connect(ENV.MONGODB_URI, {
       dbName: ENV.DB_NAME,
       maxPoolSize: 10,
     });
 
-    console.log('Database connected');
+    console.log("Database connected");
 
     return mongooseInstance;
   } catch (err) {
-    console.error('Database failed to connect', err);
+    console.error("Database failed to connect", err);
     throw err;
   }
 }
-
-export async function getClient() {
-  const conn = await connectDB();
-  return conn.connection.getClient().db(ENV.DB_NAME);
-}
+export default connectDB;
