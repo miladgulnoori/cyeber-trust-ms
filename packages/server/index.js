@@ -2,6 +2,12 @@ import express from "express";
 import cors from "cors";
 import { connectDB } from "./src/database/db.js";
 import ENV from "./src/config/env.config.js";
+import employeeRouter from "./src/routers/employee.router.js";
+import departementRouter from "./src/routers/department.router.js";
+import projectRouter from "./src/routers/project.router.js";
+import taskRouter from "./src/routers/task.router.js";
+import costRouter from "./src/routers/cost.router.js";
+import quotationRouter from "./src/routers/quotation.router.js";
 
 const app = express();
 app.use(cors());
@@ -15,6 +21,12 @@ app.get("/", (req, res) => {
 // Import your routes here (if you have any)
 // Example: import userRoutes from "./src/routes/userRoutes.js";
 // app.use("/api/users", userRoutes);
+app.use("/api/v1/employee", employeeRouter);
+app.use("/api/v1/department", departementRouter);
+app.use("/api/v1/project", projectRouter);
+app.use("/api/v1/task", taskRouter);
+app.use("/api/v1/cost", costRouter);
+app.use("/api/v1/quotation", quotationRouter);
 
 const PORT = ENV.PORT || 5000;
 
