@@ -25,4 +25,10 @@ employeeRouter.put("/:Id", async (req, res) => {
   res.send({ success: true, message: `Employee ${Id} updated!` });
 });
 
+//Delete employee
+employeeRouter.delete("/:Id", async (req, res) => {
+  const { Id } = req.params;
+  res.send({ success: true, message: `Employee ${Id} deleted!` });
+});
+
 export default employeeRouter;
