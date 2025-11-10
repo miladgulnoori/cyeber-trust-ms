@@ -1,64 +1,99 @@
-// src/pages/TasksManagementPage.tsx
-import React from "react";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-  TableCell,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Edit3, Trash2 } from "lucide-react";
-
-const tasks = [
-  {
-    id: "1",
-    title: "Design Homepage",
-    assignedTo: "Alice Johnson",
-    status: "In Progress",
-  },
-  {
-    id: "2",
-    title: "Setup Database",
-    assignedTo: "Bob Smith",
-    status: "Pending",
-  },
-  // ... placeholder tasks
-];
+// src/pages/TaskManagementPage.jsx
+import React, { useState } from "react";
+import { TaskForm } from "../components/forms/TaskForm";
+import { Button } from "../components/ui/Button";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function Task() {
+  const [tasks, setTasks] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [editTask, setEditTask] = useState(null);
+
+  const handleFormSubmit = (task) => {
+    if (editTask) {
+      setTasks(
+        tasks.map((t) => (t.id === editTask.id ? { ...t, ...task } : t))
+      );
+    } else {
+      setTasks([...tasks, { id: Date.now(), ...task }]);
+    }
+    setShowForm(false);
+    setEditTask(null);
+  };
+
+  const handleEdit = (task) => {
+    setEditTask(task);
+    setShowForm(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Delete this task?")) {
+      setTasks(tasks.filter((t) => t.id !== id));
+    }
+  };
+
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Tasks Management</h1>
-      <Button className="mb-4">Add Task</Button>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableHeader>Title</TableHeader>
-            <TableHeader>Assigned To</TableHeader>
-            <TableHeader>Status</TableHeader>
-            <TableHeader className="text-right">Actions</TableHeader>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Task Management</h1>
+      <Button
+        onClick={() => {
+          setShowForm(true);
+          setEditTask(null);
+        }}
+        className="mb-4"
+      >
+        + Add Task
+      </Button>
+      {showForm && (
+        <TaskForm
+          initialData={editTask}
+          onSubmit={handleFormSubmit}
+          onCancel={() => {
+            setShowForm(false);
+            setEditTask(null);
+          }}
+        />
+      )}
+      <table className="min-w-full bg-white mt-4">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">Title</th>
+            <th className="px-4 py-2">Due Date</th>
+            <th className="px-4 py-2">Assigned To</th>
+            <th className="px-4 py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
           {tasks.map((task) => (
-            <TableRow key={task.id}>
-              <TableCell>{task.title}</TableCell>
-              <TableCell>{task.assignedTo}</TableCell>
-              <TableCell>{task.status}</TableCell>
-              <TableCell className="text-right space-x-2">
-                <Button size="icon" variant="ghost" title="Edit">
-                  <Edit3 size={16} />
-                </Button>
-                <Button size="icon" variant="destructive" title="Delete">
-                  <Trash2 size={16} />
-                </Button>
-              </TableCell>
-            </TableRow>
+            <tr key={task.id} className="border-t">
+              <td className="px-4 py-2">{task.title}</td>
+              <td className="px-4 py-2">{task.dueDate}</td>
+              <td className="px-4 py-2">{task.assignedTo}</td>
+              <td className="px-4 py-2 flex space-x-2">
+                <button
+                  onClick={() => handleEdit(task)}
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  <PencilSquareIcon className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => handleDelete(task.id)}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  <TrashIcon className="h-5 w-5" />
+                </button>
+              </td>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
+          {tasks.length === 0 && (
+            <tr>
+              <td colSpan="4" className="text-center p-4 text-gray-500">
+                No tasks available.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }
