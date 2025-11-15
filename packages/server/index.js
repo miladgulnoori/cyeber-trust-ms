@@ -2,12 +2,12 @@ import express from "express";
 import cors from "cors";
 import { connectDB } from "./src/database/db.js";
 import ENV from "./src/config/env.config.js";
-import employeeRouter from "./src/routers/employee.router.js";
-import departementRouter from "./src/routers/department.router.js";
-import projectRouter from "./src/routers/project.router.js";
-import taskRouter from "./src/routers/task.router.js";
-import costRouter from "./src/routers/cost.router.js";
-import quotationRouter from "./src/routers/quotation.router.js";
+import employeeRouter from "./src/routers/employee.route.js";
+import departementRouter from "./src/routers/department.route.js";
+import projectRouter from "./src/routers/project.route.js";
+import taskRouter from "./src/routers/task.route.js";
+import costRouter from "./src/routers/cost.route.js";
+import quotationRouter from "./src/routers/quotation.route.js";
 
 const app = express();
 app.use(cors());

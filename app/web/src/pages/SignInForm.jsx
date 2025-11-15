@@ -1,5 +1,5 @@
 // import { cn } from "@/lib/utils"
-import { Button } from "../components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,7 +13,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "../components/ui/field";
-import { Input } from "../components/ui/input";
+import { Input } from "@/components/ui/input";
 
 export function SignInForm({ className, ...props }) {
   return (

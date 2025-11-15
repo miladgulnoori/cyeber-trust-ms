@@ -1,7 +1,7 @@
 import "./App.css";
 import { SignInForm } from "./pages/SignInForm";
 import Employee from "./pages/Employee";
-import { Home } from "./pages/Home.jsx";
+import Home from "./pages/Home.jsx";
 import Department from "./pages/Department";
 import Task from "./pages/Task";
 import Project from "./pages/Project";

@@ -1,8 +1,8 @@
 // src/pages/TaskManagementPage.jsx
 import React, { useState } from "react";
 import { TaskForm } from "../components/forms/TaskForm";
-import { Button } from "../components/ui/Button";
-import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function Task() {
   const [tasks, setTasks] = useState([]);

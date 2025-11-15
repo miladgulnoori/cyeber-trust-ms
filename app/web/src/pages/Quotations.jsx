@@ -1,8 +1,8 @@
 // src/pages/QuotationManagementPage.jsx
 import React, { useState } from "react";
 import { QuotationForm } from "../components/forms/QuotationForm";
-import { Button } from "../components/ui/Button";
-import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function Quotations() {
   const [quotes, setQuotes] = useState([]);

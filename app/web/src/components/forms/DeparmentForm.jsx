@@ -13,7 +13,7 @@ const DepartmentSchema = z.object({
   description: z.string().optional(),
 });
 
-export function DepartmentForm({ initialData, onSubmit, onCancel }) {
+export default function DepartmentForm({ initialData, onSubmit, onCancel }) {
   // Use React Hook Form with Zod resolver for validation
   const {
     register,

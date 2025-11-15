@@ -1,8 +1,8 @@
 // src/pages/ProjectManagementPage.jsx
 import React, { useState } from "react";
 import { ProjectForm } from "../components/forms/ProjectForm";
-import { Button } from "../components/ui/Button";
-import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 export default function Project() {
   const [projects, setProjects] = useState([]);

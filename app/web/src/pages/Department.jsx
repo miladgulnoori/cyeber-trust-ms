@@ -1,10 +1,10 @@
 // src/pages/DepartmentManagementPage.jsx
 import React, { useState } from "react";
-import { DepartmentForm } from "../components/forms/DepartmentForm";
-import { Button } from "../components/ui/Button";
-import { Label } from "../components/ui/Label";
-import { Input } from "../components/ui/Input";
-import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline"; // Icons for edit/delete
+import { DepartmentForm } from "../components/forms/DeparmentForm";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/Label";
+import { Input } from "@/components/ui/Input";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline"; // Icons for edit/delete
 
 export default function Departmen() {
   const [departments, setDepartments] = useState([]); // List of departments
