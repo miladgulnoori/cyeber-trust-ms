@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { CostForm } from "../components/forms/CostForm";
 import { Button } from "../components/ui/Button";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline";
 
 export default function CostTracking() {
   const [costs, setCosts] = useState([]);

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ProjectForm } from "../components/forms/ProjectForm";
 import { Button } from "../components/ui/Button";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline";
 
 export default function Project() {
   const [projects, setProjects] = useState([]);
@@ -35,7 +35,7 @@ export default function Project() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Project Management</h1>
-      <Button
+      <button
         onClick={() => {
           setShowForm(true);
           setEditProject(null);
@@ -43,7 +43,7 @@ export default function Project() {
         className="mb-4"
       >
         + Add Project
-      </Button>
+      </button>
       {showForm && (
         <ProjectForm
           initialData={editProject}

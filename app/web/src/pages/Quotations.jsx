@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { QuotationForm } from "../components/forms/QuotationForm";
 import { Button } from "../components/ui/Button";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline";
 
 export default function Quotations() {
   const [quotes, setQuotes] = useState([]);
@@ -35,7 +35,7 @@ export default function Quotations() {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Quotation Management</h1>
-      <Button
+      <button
         onClick={() => {
           setShowForm(true);
           setEditQuote(null);
@@ -43,7 +43,7 @@ export default function Quotations() {
         className="mb-4"
       >
         + Add Quotation
-      </Button>
+      </button>
       {showForm && (
         <QuotationForm
           initialData={editQuote}

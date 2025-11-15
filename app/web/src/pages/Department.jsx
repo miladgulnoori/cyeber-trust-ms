@@ -4,7 +4,7 @@ import { DepartmentForm } from "../components/forms/DepartmentForm";
 import { Button } from "../components/ui/Button";
 import { Label } from "../components/ui/Label";
 import { Input } from "../components/ui/Input";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline"; // Icons for edit/delete
+import { PencilSquareIcon, TrashIcon } from "heroicons/react/24/outline"; // Icons for edit/delete
 
 export default function Departmen() {
   const [departments, setDepartments] = useState([]); // List of departments

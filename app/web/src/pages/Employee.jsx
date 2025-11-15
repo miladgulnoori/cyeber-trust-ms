@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import EmployeeForm from "@/components/forms/EmployeeForm";
+import { Button } from "/components/ui/Button";
+import EmployeeForm from "/components/forms/EmployeeForm";
 import {
   Table,
   TableBody,
@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
   TableCell,
-} from "@/components/ui/table";
+} from "/components/ui/table";
 import { Edit3, Trash2 } from "lucide-react";
 
 export default function Employee() {
