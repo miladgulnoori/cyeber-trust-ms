@@ -1,34 +1,17 @@
 import { Router } from "express";
+import {
+  createDepartment,
+  getDepartments,
+  getDepartment,
+  updateDepartment,
+  deleteDepartment,
+} from "../controllers/department.controller.js";
 
-const departmentRouter = Router();
+const router = Router();
+router.post("/", createDepartment);
+router.get("/", getDepartments);
+router.get("/:id", getDepartment);
+router.put("/:id", updateDepartment);
+router.delete("/:id", deleteDepartment);
 
-// Create a new department
-departmentRouter.post("/", async (req, res) => {
-  // body: {name, location}
-  res.send({ success: true, message: "Department created!" });
-});
-
-// Get all departments
-departmentRouter.get("/", async (req, res) => {
-  res.send({ success: true, data: [] });
-});
-
-// Get single department by Id
-departmentRouter.get("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, data: { Id } });
-});
-
-// Update department
-departmentRouter.put("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, message: `Department ${Id} updated!` });
-});
-
-// Delete department
-departmentRouter.delete("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, message: `Department ${Id} deleted!` });
-});
-
-export default departmentRouter;
+export default router;

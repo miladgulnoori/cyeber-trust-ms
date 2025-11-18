@@ -1,29 +1,17 @@
 import { Router } from "express";
+import {
+  createTask,
+  getTasks,
+  getTask,
+  updateTask,
+  deleteTask,
+} from "../controllers/task.controller.js";
 
-const taskRouter = Router();
+const router = Router();
+router.post("/", createTask);
+router.get("/", getTasks);
+router.get("/:id", getTask);
+router.put("/:id", updateTask);
+router.delete("/:id", deleteTask);
 
-// Create a new task
-taskRouter.post("/", async (req, res) => {
-  // body: {title, description, assignedTo, dueDate}
-  res.send({ success: true, message: "Task created!" });
-});
-// Get all tasks
-taskRouter.get("/", async (req, res) => {
-  res.send({ success: true, data: [] });
-});
-// Get single task by Id
-taskRouter.get("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, data: { Id } });
-});
-// Update task
-taskRouter.put("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, message: `Task ${Id} updated!` });
-});
-// Delete task
-taskRouter.delete("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, message: `Task ${Id} deleted!` });
-});
-export default taskRouter;
+export default router;
