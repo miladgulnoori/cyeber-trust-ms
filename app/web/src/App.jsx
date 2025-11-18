@@ -1,23 +1,13 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import { SignInForm } from "./pages/SignInForm";
-import Employee from "./pages/Employee";
-import Home from "./pages/Home.jsx";
-import Department from "./pages/Department";
-import Task from "./pages/Task";
-import Project from "./pages/Project";
-import CostTracking from "./pages/CostTracking";
+import { AppSidebar } from "./components/AppSidebar";
 
 function App() {
   return (
-    <>
-      <Home />
-      <SignInForm />
-      <Employee />
-      <Department />
-      <Task />
-      <Project />
-      <CostTracking />
-    </>
+    <div className="flex items-center justify-center">
+      <AppSidebar />
+      <Outlet />
+    </div>
   );
 }
 
