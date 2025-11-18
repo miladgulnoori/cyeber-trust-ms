@@ -2,16 +2,17 @@ import Department from "../models/Department.model.js";
 
 export const createDepartment = async (req, res) => {
   const dep = await Department.create(req.body);
-  res.json(dep);
+  res.status(201).json(dep);
 };
 
 export const getDepartments = async (req, res) => {
-  const all = await Department.find();
-  res.json(all);
+  const list = await Department.find().sort({ createdAt: -1 });
+  res.json(list);
 };
 
 export const getDepartment = async (req, res) => {
   const dep = await Department.findById(req.params.id);
+  if (!dep) return res.status(404).json({ message: "Not found" });
   res.json(dep);
 };
 

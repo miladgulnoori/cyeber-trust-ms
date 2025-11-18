@@ -2,16 +2,17 @@ import Cost from "../models/Cost.model.js";
 
 export const createCost = async (req, res) => {
   const c = await Cost.create(req.body);
-  res.json(c);
+  res.status(201).json(c);
 };
 
 export const getCosts = async (req, res) => {
-  const all = await Cost.find();
-  res.json(all);
+  const list = await Cost.find().sort({ createdAt: -1 });
+  res.json(list);
 };
 
 export const getCost = async (req, res) => {
   const c = await Cost.findById(req.params.id);
+  if (!c) return res.status(404).json({ message: "Not found" });
   res.json(c);
 };
 

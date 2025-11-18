@@ -2,16 +2,17 @@ import Project from "../models/Project.model.js";
 
 export const createProject = async (req, res) => {
   const p = await Project.create(req.body);
-  res.json(p);
+  res.status(201).json(p);
 };
 
 export const getProjects = async (req, res) => {
-  const all = await Project.find();
-  res.json(all);
+  const list = await Project.find().sort({ createdAt: -1 });
+  res.json(list);
 };
 
 export const getProject = async (req, res) => {
   const p = await Project.findById(req.params.id);
+  if (!p) return res.status(404).json({ message: "Not found" });
   res.json(p);
 };
 

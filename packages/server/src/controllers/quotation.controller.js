@@ -2,16 +2,17 @@ import Quotation from "../models/Quotation.model.js";
 
 export const createQuotation = async (req, res) => {
   const q = await Quotation.create(req.body);
-  res.json(q);
+  res.status(201).json(q);
 };
 
 export const getQuotations = async (req, res) => {
-  const all = await Quotation.find();
-  res.json(all);
+  const list = await Quotation.find().sort({ createdAt: -1 });
+  res.json(list);
 };
 
 export const getQuotation = async (req, res) => {
   const q = await Quotation.findById(req.params.id);
+  if (!q) return res.status(404).json({ message: "Not found" });
   res.json(q);
 };
 

@@ -1,25 +1,26 @@
 import Task from "../models/Task.model.js";
 
 export const createTask = async (req, res) => {
-  const task = await Task.create(req.body);
-  res.json(task);
+  const item = await Task.create(req.body);
+  res.status(201).json(item);
 };
 
 export const getTasks = async (req, res) => {
-  const all = await Task.find();
-  res.json(all);
+  const list = await Task.find().sort({ createdAt: -1 });
+  res.json(list);
 };
 
 export const getTask = async (req, res) => {
-  const task = await Task.findById(req.params.id);
-  res.json(task);
+  const t = await Task.findById(req.params.id);
+  if (!t) return res.status(404).json({ message: "Not found" });
+  res.json(t);
 };
 
 export const updateTask = async (req, res) => {
-  const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+  const t = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.json(task);
+  res.json(t);
 };
 
 export const deleteTask = async (req, res) => {
