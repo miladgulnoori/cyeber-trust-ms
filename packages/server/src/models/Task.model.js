@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 
-const taskSchema = new mongoose.Schema(
+const schema = new mongoose.Schema(
   {
-    title: String,
+    title: { type: String, required: true },
     description: String,
     dueDate: String,
     assignedTo: String,
+    status: { type: String, default: "Pending" },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Task", taskSchema);
+export default mongoose.model("Task", schema);

@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const costSchema = new mongoose.Schema(
+const schema = new mongoose.Schema(
   {
-    item: String,
-    category: String,
-    amount: Number,
+    item: { type: String, required: true },
+    category: { type: String, required: true },
+    amount: { type: Number, required: true },
     date: String,
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Cost", costSchema);
+export default mongoose.model("Cost", schema);

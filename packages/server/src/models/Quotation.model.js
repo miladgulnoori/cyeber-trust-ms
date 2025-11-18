@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 
-const quotationSchema = new mongoose.Schema(
+const schema = new mongoose.Schema(
   {
-    quoteNumber: String,
-    client: String,
-    amount: Number,
+    quoteNumber: { type: String, required: true },
+    client: { type: String, required: true },
+    amount: { type: Number, required: true },
     date: String,
+    status: { type: String, default: "Pending" },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Quotation", quotationSchema);
+export default mongoose.model("Quotation", schema);
