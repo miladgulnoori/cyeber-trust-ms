@@ -10,58 +10,64 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Link } from "react-router-dom";
 
 // Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "dashboard",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
+    title: "Employees",
+    url: "employees",
     icon: Inbox,
   },
   {
-    title: "Calendar",
-    url: "#",
+    title: "Departments",
+    url: "departments",
     icon: Calendar,
   },
   {
-    title: "Search",
-    url: "#",
+    title: "Tasks",
+    url: "tasks",
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Projects",
+    url: "projects",
+    icon: Settings,
+  },
+  {
+    title: "Quotations",
+    url: "quotations",
+    icon: Settings,
+  },
+  {
+    title: "Cost Tracking",
+    url: "cost-tracking",
     icon: Settings,
   },
 ];
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <div className="fixed left-0 top-0 h-full p-4 w-60 pt-7 bg-gray-200">
+      <div>Application</div>
+      <ul className="mt-8 pl-3 grid gap-4">
+        {items.map((item) => (
+          <li key={item.title} className="mb-2 flex ">
+            <Link
+              to={item.url}
+              className="flex items-center space-x-2 gap-2 hover:border-b-2 border-blue-500"
+            >
+              <item.icon />
+              {item.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
