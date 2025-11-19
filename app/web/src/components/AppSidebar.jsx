@@ -1,4 +1,16 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  Calendar,
+  CirclePoundSterling,
+  Home,
+  House,
+  Inbox,
+  MapIcon,
+  PanelRightClose,
+  Search,
+  Settings,
+  User,
+  Workflow,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -22,32 +34,32 @@ const items = [
   {
     title: "Employees",
     url: "employees",
-    icon: Inbox,
+    icon: User,
   },
   {
     title: "Departments",
     url: "departments",
-    icon: Calendar,
+    icon: PanelRightClose,
   },
   {
     title: "Tasks",
     url: "tasks",
-    icon: Search,
+    icon: Workflow,
   },
   {
     title: "Projects",
     url: "projects",
-    icon: Settings,
+    icon: MapIcon,
   },
   {
     title: "Quotations",
     url: "quotations",
-    icon: Settings,
+    icon: Inbox,
   },
   {
     title: "Cost Tracking",
     url: "cost-tracking",
-    icon: Settings,
+    icon: CirclePoundSterling,
   },
 ];
 
@@ -55,7 +67,7 @@ export function AppSidebar() {
   return (
     <div className="left-0 top-0 h-full p-4 w-60 pt-7 bg-gray-200">
       <div>Application</div>
-      <ul className="mt-8 pl-3 grid gap-4">
+      <ul className="mt-8 pl-4 grid gap-4">
         {items.map((item) => (
           <li key={item.title} className="mb-2 flex ">
             <Link

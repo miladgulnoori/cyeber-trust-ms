@@ -1,28 +1,42 @@
-const BASE = "http://localhost:5000/api/employees";
+const BASE = "http://localhost:5000/api/v1/employee";
+
+async function request(url, options = {}) {
+  const res = await fetch(url, {
+    headers: { "Content-Type": "application/json" },
+    ...options,
+  });
+
+  if (!res.ok) {
+    console.error("API ERROR", res.status, await res.text());
+    throw new Error("API request failed");
+  }
+
+  try {
+    return await res.json();
+  } catch {
+    return {};
+  }
+}
 
 export const employeeApi = {
-  getAll: async () => (await fetch(BASE)).json(),
+  getAll: () => request(BASE),
 
-  create: async (data) =>
-    (
-      await fetch(BASE, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-    ).json(),
+  create: (data) =>
+    request(BASE, {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
 
-  update: async (id, data) =>
-    (
-      await fetch(`${BASE}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-    ).json(),
+  update: (id, data) =>
+    request(`${BASE}/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    }),
 
-  delete: async (id) =>
-    (await fetch(`${BASE}/${id}`, { method: "DELETE" })).json(),
+  delete: (id) =>
+    request(`${BASE}/${id}`, {
+      method: "DELETE",
+    }),
 };
 
 export default employeeApi;
