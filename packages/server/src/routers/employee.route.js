@@ -1,34 +1,18 @@
 import { Router } from "express";
+import {
+  createEmployee,
+  getEmployees,
+  getEmployee,
+  updateEmployee,
+  deleteEmployee,
+} from "../controllers/employee.controller.js";
 
-const employeeRouter = Router();
+const router = Router();
 
-// Create a new employee
-employeeRouter.post("/", async (req, res) => {
-  // body: {name, email, department}
-  res.send({ success: true, message: "Employee created!" });
-});
+router.post("/", createEmployee);
+router.get("/", getEmployees);
+router.get("/:id", getEmployee);
+router.put("/:id", updateEmployee);
+router.delete("/:id", deleteEmployee);
 
-//Get all emoployees
-employeeRouter.get("/", async (req, res) => {
-  res.send({ success: true, data: [] });
-});
-
-//Get single emaployee by Id
-employeeRouter.get("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, data: { Id } });
-});
-
-//Update employee
-employeeRouter.put("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, message: `Employee ${Id} updated!` });
-});
-
-//Delete employee
-employeeRouter.delete("/:Id", async (req, res) => {
-  const { Id } = req.params;
-  res.send({ success: true, message: `Employee ${Id} deleted!` });
-});
-
-export default employeeRouter;
+export default router;

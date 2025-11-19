@@ -53,7 +53,7 @@ const items = [
 
 export function AppSidebar() {
   return (
-    <div className="fixed left-0 top-0 h-full p-4 w-60 pt-7 bg-gray-200">
+    <div className="left-0 top-0 h-full p-4 w-60 pt-7 bg-gray-200">
       <div>Application</div>
       <ul className="mt-8 pl-3 grid gap-4">
         {items.map((item) => (

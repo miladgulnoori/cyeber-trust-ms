@@ -1,8 +1,13 @@
 // src/routes/index.jsx
-import ErrorPage from "@/pages/ErrorPage";
+import ErrorPage from "@/pages/ErrorPage.jsx";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "./App";
 import Employee from "@/pages/Employee.jsx";
+import Department from "@/pages/Department.jsx";
+import Task from "@/pages/Task.jsx";
+import Project from "@/pages/Project.jsx";
+import Quotation from "@/pages/Quotations.jsx"; // FIXED
+import CostTracking from "@/pages/CostTracking.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,23 +29,23 @@ const router = createBrowserRouter([
       },
       {
         path: "departments",
-        element: <div>DAshboard 3 page</div>,
+        element: <Department />,
       },
       {
         path: "tasks",
-        element: <div>DAshboard 4 page</div>,
+        element: <Task />,
       },
       {
         path: "projects",
-        element: 5,
+        element: <Project />,
       },
       {
         path: "quotations",
-        element: <div>DAshboard 5 page</div>,
+        element: <Quotation />,
       },
       {
         path: "cost-tracking",
-        element: <div>DAshboard 6 page</div>,
+        element: <CostTracking />,
       },
     ],
   },
