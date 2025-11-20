@@ -4,7 +4,7 @@ import { AppSidebar } from "./components/AppSidebar";
 
 function App() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex">
       <AppSidebar />
       <Outlet />
     </div>

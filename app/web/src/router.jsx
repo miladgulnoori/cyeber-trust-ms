@@ -8,6 +8,7 @@ import Task from "@/pages/Task.jsx";
 import Project from "@/pages/Project.jsx";
 import Quotation from "@/pages/Quotations.jsx"; // FIXED
 import CostTracking from "@/pages/CostTracking.jsx";
+import Dashboard from "@/pages/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       { index: true, element: <Navigate to="dashboard" replace /> },
       {
         path: "dashboard",
-        element: <div>DAshboard page</div>,
+        element: <Dashboard />,
       },
       {
         path: "employees",
