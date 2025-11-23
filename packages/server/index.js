@@ -8,6 +8,7 @@ import projectRouter from "./src/routers/project.route.js";
 import taskRouter from "./src/routers/task.route.js";
 import costRouter from "./src/routers/cost.route.js";
 import quotationRouter from "./src/routers/quotation.route.js";
+import authRouter from "./src/routers/auth.route.js";
 
 const app = express();
 app.use(cors());
@@ -27,6 +28,7 @@ app.use("/api/v1/project", projectRouter);
 app.use("/api/v1/task", taskRouter);
 app.use("/api/v1/cost", costRouter);
 app.use("/api/v1/quotation", quotationRouter);
+app.use("/api/auth", authRouter);
 
 const PORT = ENV.PORT || 5000;
 

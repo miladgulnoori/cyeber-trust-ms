@@ -9,11 +9,30 @@ import Project from "@/pages/Project.jsx";
 import Quotation from "@/pages/Quotations.jsx"; // FIXED
 import CostTracking from "@/pages/CostTracking.jsx";
 import Dashboard from "@/pages/Dashboard.jsx";
+import LoginForm from "./pages/auth/LoginForm";
+import SignupForm from "./pages/auth/SignupForm.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>landig page</div>,
+    element: <div>Lending page</div>,
+  },
+  {
+    path: "auth",
+    children: [
+      {
+        index: true,
+        element: <Navigate to="signup" replace />,
+      },
+      {
+        path: "login",
+        element: <LoginForm />,
+      },
+      {
+        path: "signup",
+        element: <SignupForm />,
+      },
+    ],
   },
   {
     path: "app",
