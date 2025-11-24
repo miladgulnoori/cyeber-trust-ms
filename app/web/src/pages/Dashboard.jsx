@@ -100,10 +100,10 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="p-25 space-y-10">
+    <div className="pl-30 space-y-10 ">
       <h1 className="text-4xl font-bold  top-0tracking-tight">Dashboard</h1>
 
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2">
+      <div className="grid gap-10 grid-cols-1 sm:grid-cols-3 lg:grid-cols-2">
         {stats.map((item, index) => (
           <Link key={index} to={item.link}>
             <Card

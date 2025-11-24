@@ -1,18 +1,21 @@
 import {
-  Calendar,
   CirclePoundSterling,
   Home,
   Inbox,
   MapIcon,
+  PanelLeftClose,
+  PanelLeftOpen,
   PanelRightClose,
   Settings,
   User,
   Workflow,
+  LogOut,
 } from "lucide-react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-// Menu items
+// Menu items with icons
 const items = [
   { title: "Home", url: "dashboard", icon: Home },
   { title: "Employees", url: "employees", icon: User },
@@ -25,16 +28,67 @@ const items = [
 
 export function AppSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const [collapsed, setCollapsed] = useState(false);
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/auth/login");
+  };
 
   return (
-    <div className="w-64 min-h-screen bg-white border-r shadow-sm px-4 py-6 flex flex-col">
-      {/* Sidebar Header */}
-      <div className="font-bold text-2xl text-gray-800 mb-8 pl-2 tracking-tight">
-        CyberTrust MS
+    <div
+      className={`
+        h-screen border-r shadow-sm 
+        transition-all duration-300 
+        flex flex-col
+        bg-white dark:bg-neutral-900 
+        ${collapsed ? "w-20" : "w-64"}
+      `}
+    >
+      {/* COLLAPSE BUTTON */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className="p-3 hover:bg-blue-50 dark:hover:bg-neutral-800 transition flex justify-end"
+      >
+        {collapsed ? (
+          <PanelLeftOpen className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+        ) : (
+          <PanelLeftClose className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+        )}
+      </button>
+
+      {/* PROFILE SECTION */}
+      <div
+        className={`
+          flex items-center gap-4 p-4 rounded-xl 
+          bg-blue-50 dark:bg-neutral-800 
+          mx-3 mb-6 transition-all 
+          ${collapsed ? "flex-col text-center" : "flex-row"}
+        `}
+      >
+        {/* Avatar */}
+        <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center text-lg font-semibold">
+          M
+        </div>
+
+        {/* User Info */}
+        {!collapsed && (
+          <div className="transition-opacity pt-3 ">
+            <p className="font-semibold text-gray-800 dark:text-gray-200">
+              Milad Noori
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              admin@company.com
+            </p>
+          </div>
+        )}
       </div>
 
-      {/* Sidebar Menu List */}
-      <ul className="space-y-2">
+      {/* MENU ITEMS */}
+      <ul className="space-y-2 px-3 flex-1">
         {items.map((item) => {
           const isActive = location.pathname.includes(item.url);
 
@@ -43,33 +97,38 @@ export function AppSidebar() {
               <Link
                 to={item.url}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all 
-                  ${
-                    isActive
-                      ? "bg-blue-600 text-white shadow-md"
-                      : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-                  }
-                `}
+                ${
+                  isActive
+                    ? "bg-blue-600 text-white shadow-md"
+                    : "text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-neutral-800 hover:text-blue-600"
+                }`}
               >
                 <item.icon
                   className={`h-5 w-5 ${
-                    isActive ? "text-white" : "text-gray-500"
+                    isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
                   }`}
                 />
-                {item.title}
+
+                {!collapsed && <span>{item.title}</span>}
               </Link>
             </li>
           );
         })}
       </ul>
 
-      {/* Footer (optional) */}
-      <div className="mt-auto pt-6 border-t">
-        <Link
-          to="settings"
-          className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all"
+      {/* LOGOUT BUTTON */}
+      <div className="pt-4 border-t dark:border-neutral-800 mx-3 mb-4">
+        <button
+          onClick={handleLogout}
+          className={`flex items-center gap-3 px-4 py-3 w-full rounded-lg text-sm font-medium 
+            text-red-600 dark:text-red-400 
+            hover:bg-red-100 dark:hover:bg-neutral-800 transition-all
+            ${collapsed ? "justify-center" : ""}
+          `}
         >
-          <Settings className="h-5 w-5 text-gray-500" /> Settings
-        </Link>
+          <LogOut className="h-5 w-5" />
+          {!collapsed && "Logout"}
+        </button>
       </div>
     </div>
   );

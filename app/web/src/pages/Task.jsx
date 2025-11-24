@@ -122,7 +122,7 @@ export default function Task() {
           <div>
             <label className="block text-sm font-medium">Due Date</label>
             <input
-              type="date"
+              type="text"
               {...register("dueDate")}
               className="mt-1 block w-full border rounded p-2"
             />

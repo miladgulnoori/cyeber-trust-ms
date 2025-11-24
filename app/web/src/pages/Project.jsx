@@ -116,7 +116,7 @@ export default function Project() {
           <div>
             <label className="block text-sm font-medium">Start Date</label>
             <input
-              type="date"
+              type="text"
               {...register("startDate")}
               className="mt-1 block w-full border rounded p-2"
             />
@@ -124,7 +124,7 @@ export default function Project() {
           <div>
             <label className="block text-sm font-medium">End Date</label>
             <input
-              type="date"
+              type="text"
               {...register("endDate")}
               className="mt-1 block w-full border rounded p-2"
             />

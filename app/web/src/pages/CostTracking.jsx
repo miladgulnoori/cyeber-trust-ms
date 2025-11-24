@@ -138,7 +138,7 @@ export default function CostTracking() {
           <div>
             <label className="block text-sm font-medium">Date</label>
             <input
-              type="date"
+              type="text"
               {...register("date")}
               className="mt-1 block w-full border rounded p-2"
             />
